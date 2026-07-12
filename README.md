@@ -1,19 +1,19 @@
-# Сервер с AI агентом
+﻿# Server with AI Agent
 
-[Русский](./README.md) | [English](./README.en.md)
+[Русский](./README.ru.md) | [English](./README.md)
 
-## Описание
+## Description
 
-Сервер с AI агентом, который работает на основе LLM (Large Language Model) модели,
-модели имеют доступ к различным инструментам:
+Server with an AI agent powered by a LLM (Large Language Model).  
+The models have access to various tools:
 
-- Поиск в интернете
-- Поиск в Wikipedia
-- Доступ к RAG с базой данных
+- Internet search
+- Wikipedia search
+- RAG with database access
 
-## Установка
+## Installation
 
-Для установки необходимо клонировать репозиторий и установить зависимости:
+Clone the repository and install the dependencies:
 
 ```bash
 git clone <repo>
@@ -21,49 +21,46 @@ cd <repo>
 pip install -r requirements.txt
 ```
 
-В папку `data` необходимо добавить файлы .txt с текстом для базы знаний для RAG.
+Place your .txt files containing texts for the RAG knowledge base into the `data` folder.
 
-## Запуск
+## Running
 
-Для запуска сервера необходимо выполнить:
+To start the server, execute:
 
 ```bash
 python main.py
 ```
 
-Для пересоздания базы данных необходимо выполнить:
+To rebuild the database, run:
 
 ```bash
 python ./app/engine/generate.py
 ```
 
-## Использование
+## Usage
 
-После запуска сервера, можно отправлять POST запросы на `http://127.0.0.1:8000/api/`
+After starting the server, send POST requests to `http://127.0.0.1:8000/api/`
 
-Обращение к ИИ в формате чата, доступ к БД и инструментам:
+Request the AI in chat format, with access to the database and tools:
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/api/chat/request" -H "accept: application/json" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"Что грозит человеку укравшему интеллектуальную собственность?"}]}'
+curl -X POST "http://127.0.0.1:8000/api/chat/request" -H "accept: application/json" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"What are the consequences for someone who steals intellectual property?"}]}'
 ```
 
-Обращение к ИИ:
+Request the AI:
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/api/query/complete" -H "Content-Type: application/json" -d '{"query": "Что грозит
-человеку укравшему интеллектуальную собственность?"}'
+curl -X POST "http://127.0.0.1:8000/api/query/complete" -H "Content-Type: application/json" -d '{"query": "What are the consequences for someone who steals intellectual property?"}'
 ```
 
-Обращение к ИИ с доступом к БД:
+Request the AI with database access:
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/api/query/request-to-stored-index" -H "Content-Type: application/json" -d '{"
-query": "Что грозит человеку укравшему интеллектуальную собственность?"}'
+curl -X POST "http://127.0.0.1:8000/api/query/request-to-stored-index" -H "Content-Type: application/json" -d '{"query": "What are the consequences for someone who steals intellectual property?"}'
 ```
 
-Обращение к ИИ с доступом к БД и инструментам:
+Request the AI with database and tools access:
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/api/query/request-agent" -H "Content-Type: application/json" -d '{"query": "Что
-грозит человеку укравшему интеллектуальную собственность?"}'
+curl -X POST "http://127.0.0.1:8000/api/query/request-agent" -H "Content-Type: application/json" -d '{"query": "What are the consequences for someone who steals intellectual property?"}'
 ```
